@@ -8,4 +8,3 @@ class Square:
     def __init__(self, size):
         """Create a square and store its size without validation."""
         self.__size = size
-

@@ -4,4 +4,3 @@
 
 class Square:
     """Represent a square without storing any data yet."""
-
