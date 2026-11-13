@@ -1,0 +1,46 @@
+The ``MyList`` class
+===================
+
+``MyList`` inherits from ``list`` and prints its contents in ascending order
+without changing the original list.
+
+Import the class:
+
+>>> MyList = __import__('1-my_list').MyList
+>>> issubclass(MyList, list)
+True
+
+An empty instance behaves like a regular list, and its sorted display is
+empty as well:
+
+>>> values = MyList()
+>>> print(values)
+[]
+>>> values.print_sorted()
+[]
+>>> print(values)
+[]
+
+Appending values works as usual. ``print_sorted`` displays a sorted copy and
+leaves the list in its original order:
+
+>>> values = MyList()
+>>> values.append(1)
+>>> values.append(4)
+>>> values.append(2)
+>>> values.append(3)
+>>> values.append(5)
+>>> print(values)
+[1, 4, 2, 3, 5]
+>>> values.print_sorted()
+[1, 2, 3, 4, 5]
+>>> print(values)
+[1, 4, 2, 3, 5]
+
+Negative values are sorted in ascending order too:
+
+>>> values = MyList([3, -2, 0, -5, 1])
+>>> values.print_sorted()
+[-5, -2, 0, 1, 3]
+>>> print(values)
+[3, -2, 0, -5, 1]

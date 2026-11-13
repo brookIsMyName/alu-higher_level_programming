@@ -1,0 +1,49 @@
+The ``BaseGeometry`` integer validator
+======================================
+
+``BaseGeometry`` provides an ``area`` method and validates positive integer
+values with ``integer_validator``.
+
+Import and instantiate the class:
+
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> geometry = BaseGeometry()
+
+The area method raises the specified exception:
+
+>>> geometry.area()
+Traceback (most recent call last):
+...
+Exception: area() is not implemented
+
+Positive integers are accepted:
+
+>>> geometry.integer_validator("my_int", 12)
+>>> geometry.integer_validator("width", 89)
+>>> geometry.integer_validator("value", 1)
+
+Non-integers raise ``TypeError`` with the field name in the message:
+
+>>> geometry.integer_validator("name", "John")
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
+>>> geometry.integer_validator("height", 2.5)
+Traceback (most recent call last):
+...
+TypeError: height must be an integer
+>>> geometry.integer_validator("flag", True)
+Traceback (most recent call last):
+...
+TypeError: flag must be an integer
+
+Zero and negative integers raise ``ValueError``:
+
+>>> geometry.integer_validator("age", 0)
+Traceback (most recent call last):
+...
+ValueError: age must be greater than 0
+>>> geometry.integer_validator("distance", -4)
+Traceback (most recent call last):
+...
+ValueError: distance must be greater than 0
