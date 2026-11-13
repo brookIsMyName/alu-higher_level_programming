@@ -3,5 +3,5 @@
 
 
 def is_kind_of_class(obj, a_class):
-    """Return whether obj is an instance of a_class or one of its subclasses."""
+    """Check whether obj is an instance of a_class or one of its subclasses."""
     return isinstance(obj, a_class)

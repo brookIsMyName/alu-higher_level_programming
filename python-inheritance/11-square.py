@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Define a square with a readable description and area."""
 
+
 class BaseGeometry:
     """Represent the common interface and validation for geometry classes."""
 

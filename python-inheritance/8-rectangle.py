@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Define a rectangle with validated dimensions."""
 
+
 class BaseGeometry:
     """Represent the common interface and validation for geometry classes."""
 

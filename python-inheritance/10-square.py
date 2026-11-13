@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Define a square as a specialized rectangle."""
 
+
 class BaseGeometry:
     """Represent the common interface and validation for geometry classes."""
 
