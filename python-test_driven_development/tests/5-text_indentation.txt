@@ -1,0 +1,33 @@
+Text indentation
+================
+
+>>> text_indentation = __import__("5-text_indentation").text_indentation
+>>> from contextlib import redirect_stdout
+>>> from io import StringIO
+>>> text_indentation("  One.   Two? Three:   ")
+One.
+<BLANKLINE>
+Two?
+<BLANKLINE>
+Three:
+<BLANKLINE>
+>>> text_indentation("")
+>>> text_indentation("   ")
+>>> output = StringIO()
+>>> with redirect_stdout(output):
+...     text_indentation("  Hello  !  \n    world   ")
+>>> output.getvalue()
+'Hello  !\nworld'
+>>> output = StringIO()
+>>> with redirect_stdout(output):
+...     text_indentation(" .?:  Last   ")
+>>> output.getvalue()
+'.\n\n?\n\n:\n\nLast'
+>>> text_indentation(None)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+>>> text_indentation(["not text"])
+Traceback (most recent call last):
+...
+TypeError: text must be a string
