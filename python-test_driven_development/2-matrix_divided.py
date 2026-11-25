@@ -4,9 +4,10 @@
 
 def matrix_divided(matrix, div):
     """Return a new matrix with each quotient rounded to two places."""
-    if not isinstance(matrix, list) or any(
-        not isinstance(row, list)
-        or any(not isinstance(value, (int, float)) for value in row)
+    if not isinstance(matrix, list) or not all(
+        isinstance(row, list) and all(
+            isinstance(value, (int, float)) for value in row
+        )
         for row in matrix
     ):
         raise TypeError(

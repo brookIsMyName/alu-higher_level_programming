@@ -17,6 +17,8 @@ class TestMaxInteger(unittest.TestCase):
     def test_single(self):
         """Return the only element of a one-element list."""
         self.assertEqual(max_integer([0]), 0)
+        self.assertEqual(max_integer([1]), 1)
+        self.assertEqual(max_integer([-7]), -7)
 
     def test_maximum_positions(self):
         """Find the maximum at the beginning, middle, or end of a list."""
