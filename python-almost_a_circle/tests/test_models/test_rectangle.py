@@ -28,6 +28,24 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             Rectangle(2)
 
+    def test_rectangle_two_arguments(self):
+        """Default both offsets to zero when given two dimensions."""
+        rectangle = Rectangle(1, 2)
+        self.assertEqual((rectangle.width, rectangle.height), (1, 2))
+        self.assertEqual((rectangle.x, rectangle.y), (0, 0))
+
+    def test_rectangle_three_arguments(self):
+        """Use the third positional argument as the horizontal offset."""
+        rectangle = Rectangle(1, 2, 3)
+        self.assertEqual((rectangle.width, rectangle.height), (1, 2))
+        self.assertEqual((rectangle.x, rectangle.y), (3, 0))
+
+    def test_rectangle_four_arguments(self):
+        """Use the last two positional arguments as display offsets."""
+        rectangle = Rectangle(1, 2, 3, 4)
+        self.assertEqual((rectangle.width, rectangle.height), (1, 2))
+        self.assertEqual((rectangle.x, rectangle.y), (3, 4))
+
     def test_invalid_types(self):
         """Reject invalid attribute types in constructors and setters."""
         rect = Rectangle(3, 4, id=1)
