@@ -2,6 +2,9 @@
 """Test square behavior and its use of inherited rectangle operations."""
 from contextlib import redirect_stdout
 from io import StringIO
+import os
+from pathlib import Path
+from tempfile import TemporaryDirectory
 import unittest
 
 from models.rectangle import Rectangle
@@ -47,6 +50,33 @@ class TestSquare(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "^width must be > 0$"):
             square.size = -1
         self.assertEqual(square.size, 7)
+
+    def test_square_negative_y(self):
+        """Reject a negative vertical offset passed positionally."""
+        with self.assertRaisesRegex(ValueError, "^y must be >= 0$"):
+            Square(1, 2, -3)
+
+    def test_square_negative_size(self):
+        """Reject a negative side length using the width validation."""
+        with self.assertRaisesRegex(ValueError, "^width must be > 0$"):
+            Square(-1)
+
+    def test_square_string_x(self):
+        """Reject a string passed as the horizontal offset."""
+        with self.assertRaisesRegex(TypeError, "^x must be an integer$"):
+            Square(1, "2")
+
+    def test_square_save_to_file_none(self):
+        """Overwrite the Square JSON file with an empty list for None."""
+        workspace = TemporaryDirectory()
+        self.addCleanup(workspace.cleanup)
+        self.addCleanup(os.chdir, os.getcwd())
+        os.chdir(workspace.name)
+        path = Path("Square.json")
+        path.write_text('[{"id": 1, "size": 2, "x": 0, "y": 0}]',
+                        encoding="utf-8")
+        Square.save_to_file(None)
+        self.assertEqual(path.read_text(encoding="utf-8"), "[]")
 
     def test_update(self):
         """Set square-specific fields and give positional updates priority."""
